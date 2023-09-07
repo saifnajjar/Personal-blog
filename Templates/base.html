@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- index-854:31-->
+<head>
+	<!--===== Meta Tag =====-->
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="Runaway - Personal Portfolio HTML Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="business, agency, blog, cv, creative, html, one page, personal, portfolio, resume, responsive, bootstrap, photography, designer, developer">
+	<meta name="author" content="root">
+
+     <!--	Css Links
+    ==================================================-->
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'fonts/flaticon.css' %}">
+     <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <link rel="stylesheet" href="{% static 'css/color.css' %}" id="color-change">
+
+     <!-- Favicon 
+    ==================================================-->
+	<link rel="icon" type="{% static 'image/png' %}" sizes="32x32" href="{% static 'images/favicon.ico' %}">
+
+      <!--	Title
+    ==================================================-->
+	<title>solla</title>
+
+</head>
+
+<body id="top" class="page-load">
+	<!--	Start Back to top
+	=================================================-->
+	<a href="#" id="scroll" style="display: none;"><span></span></a>
+	<!--	End Back to top
+	==================================================-->
+	<!--	Preloader
+	==================================================-->
+	<div class="preloader">
+		<div class="lds-css ng-scope">
+			<div class="lds-spinner" style="100%;height:100%">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<!-- Color Settings Start
+	==================================================-->
+	
+	<!--  Color Settings End
+	==============================================-->
+<!-- Wrapper Start 
+==================================================-->
+<div id="page_wrapper">
+	<div class="row">
+	
+
+</head>
+
+<body>
+
+{% block content %}
+    
+
+{% endblock %}
+
+
+{% include 'partials/_footer.html' %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+
+<script>
+    $(document).ready(function() {
+        // Water Effect
+        $('.banner_water_effect').ripples({
+            resolution: 256,      // تحسين دقة التأثير
+            dropRadius: 10,       // قطر قطرة الماء
+            perturbance: 0.00,    // قوة الاهتزاز
+            interactive: true,    // تفعيل التفاعل مع المياه
+        });
+
+        // Smoothscroll js
+        $("a").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+                var hash = this.hash;
+
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top 
+                }, 1000, function(){
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+</script>
+
+
+
+</body>
+
+</html>

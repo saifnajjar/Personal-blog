@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block content %}
+<!--    Page Banner Start
+			==================================================-->
+			<section class="banner background9 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="{% url 'index' %}">Home</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Blog</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+			 <!--    Page Banner End
+			==================================================-->
+            <head>
+                <!-- تضمين الروابط والأنماط الخاصة بالتصميم -->
+                <style>
+                    .blog_item {
+                        height: 550px; /* ارتفاع ثابت لصندوق المقالة */
+                        overflow: hidden; /* لجعل المحتوى داخل الصندوق لا يظهر خارج الحدود */
+                    }
+            
+                    .blog_img {
+                        height: 200px; /* ارتفاع ثابت للصورة داخل الصندوق */
+                    }
+            
+                    .blog_content p {
+                        line-height: 1.5; /* مسافة بين الأسطر في النص */
+                        max-height: 4.5em; /* حد أقصى لارتفاع النص (ثلاثة أسطر) */
+                        overflow: hidden; /* لجعل النص المزيد من ثلاثة أسطر مخفي */
+                    }
+                    .blog_title a h5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* تحديد الحد الأقصى للأسطر */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.enlarged-blog {
+        transform: scale(1.2);
+        transition: transform 0.5s ease-in-out;
+    }
+                </style>
+            </head>
+            <body>
+                <section class="blog_area py_80 bg_black full_row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    {% for blog in blogs %}
+                                  
+
+                                    <div class="col-md-6">
+                                        <div class="blog_item mb_30 wow animated slideInUp" id="blog-{{ blog.id }}">
+                                            
+                                            
+                                            <div class="blog_img overlay_one"><img src="{{ blog.image.url }}" alt="image"></div>
+                                            <div class="blog_content bg_gray color_lightgray">
+                                                <div class="blog_title">
+                                                    <a class="color_primary" href="{% url 'blog_detail' blog.id %}"><h5>{{ blog.title }}</h5></a>
+                                                </div>
+                                                <p class="mt_15 mb_30">{{ blog.secondary_description }}</p>
+                                
+                                                <div class="admin">
+                                                    <img src="{% static 'images/about/04.png' %}" alt="image">
+                                                    <span class="color_white">By - Salsabil </span>
+                                                </div>
+                                                <div class="date float-right color_primary">{{ blog.publication_date }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <nav>
+                                    <ul class="pagination wow animated slideInUp full_row">
+                                        <!-- أزرار التنقل -->
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-md-5 col-lg-4">
+                                <div class="blog_sidebar">
+                                    <div class="widget mb_60 d-inline-block p_30 bg_deepblack full_row wow animated slideInUp">
+                                        <h3 class="widget_title mb_30 color_white text-capitalize">Follow Me</h3>
+                                        <div class="socal_media">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="widget mb_60 d-inline-block p_30 white_link color_white bg_deepblack full_row wow animated slideInUp">
+                                        <div class="widget mb_60 d-inline-block p_30 white_link color_white bg_deepblack full_row wow animated slideInUp">
+                                            <h3 class="widget_title mb_30 color_white text-capitalize">Dates</h3>
+                                            <div class="category_sidebar">
+                                                <ul>
+                                                    {% for blog in blogs %}
+                                                        <li>
+                                                            <a href="#blog-{{ blog.id }}" class="date-link">{{ blog.publication_date|date:"M. d, Y, h:i a" }}</a>
+                                                            <span>({{ blog.comments.all|length }})</span>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget mb_60 d-inline-block p_30 bg_deepblack white_link full_row wow animated slideInUp">
+                                        <h3 class="widget_title mb_30 color_white text-capitalize">Recent Post</h3>
+                                        <div class="recent_post">
+                                            <ul>
+                                                {% for blog in blogs|slice:":4" %}
+                                                <li class="mb_30">
+                                                    <a href="{% url 'blog_detail' blog.id %}">
+                                                        <div class="post_img"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></div>
+                                                        <div class="recent_post_content">
+                                                            <h6>{{ blog.title }}</h6>
+                                                            <span class="color_gray">{{ blog.publication_date|date:"d M Y" }}</span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                
+                                        
+                                        <!-- ... باقي الكود ... -->
+                                        
+                                        <script>
+                                            const dateLinks = document.querySelectorAll('.date-link');
+                                            dateLinks.forEach(link => {
+                                                link.addEventListener('click', (event) => {
+                                                    event.preventDefault();
+                                                    const targetId = link.getAttribute('href');
+                                                    const targetElement = document.querySelector(targetId);
+                                                    if (targetElement) {
+                                                        window.scrollTo({
+                                                            top: targetElement.offsetTop,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                });
+                                            });
+                                        </script>
+                                        <script>
+                                            function toggleBlog(blogId) {
+                                                const blogElement = document.getElementById(blogId);
+                                        
+                                                if (blogElement) {
+                                                    blogElement.classList.add('enlarged');
+                                                    setTimeout(() => {
+                                                        blogElement.classList.remove('enlarged');
+                                                    }, 3000);
+                                                }
+                                            }
+                                        </script>
+                                        <script>
+                                            function toggleBlog(blogId) {
+                                                const blogElement = document.getElementById(blogId);
+                                                if (blogElement) {
+                                                    blogElement.classList.toggle('enlarged-blog');
+                                                    setTimeout(() => {
+                                                        blogElement.classList.toggle('enlarged-blog');
+                                                    }, 3000);
+                                                }
+                                            }
+                                        </script>
+                                        </div>
+                                    </div>
+                                        
+
+
+
+                                    
+                
+                    
+                </script>
+                
+            
+                <!-- تضمين النصوص السكربتية وأي أكواد إضافية هنا -->
+            </body>
+
+            
+
+{% endblock %}

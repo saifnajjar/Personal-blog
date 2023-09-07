@@ -1,0 +1,200 @@
+{% extends 'base.html' %} {# تمديد قالب الأساس #}
+{% load static  %}
+
+{% block content %}
+<!--    Page Banner Start
+			==================================================-->
+			<section class="banner background9 py_80 overlay_three full_row">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="banner_text text-center">
+								<h1 class="page_banner_title color_white text-uppercase">{{ blog.title }}</h1>
+								<div class="breadcrumbs m-auto d-inline-block">
+									<ul>
+                                        <li class="hover_gray"><a href="{% url 'index' %}">Home</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+										<li class="hover_gray"><a href="{% url 'all_blogs' %}">Blog</a></li>
+										<li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+										<li class="color-default">{{ blog.title }}</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			 <!--    Page Banner End
+			==================================================-->
+            <section class="blog_area py_80 bg_black full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp">
+                                    <img src="{{ blog.image.url }}" alt="image">
+                                </div>
+                                <div class="blog_content bg_deepblack">
+                                    <div class="blog_title mb_20 color_white">
+                                        <h5>{{ blog.title }}</h5>
+                                    </div>
+                                    <div class="admin mr_20">
+                                        <img src="{% static 'images/about/04.png' %}" alt="image">
+                                        <span class="color_primary">By - Salsabil al-Najjar</span>
+                                    </div>
+                                    <div class="date color_lightgray float-left">{{ blog.publication_date }}</div>
+                                    <div class="comments">
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span class="color_lightgray">({{ comments|length }})</span>
+                                    </div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+                                        <p>{{ blog.description }}</p>
+                                        
+                                        <blockquote class="color_lightgray mt_15 wow animated slideInUp">
+                                            <sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup>
+                                            {{ blog.secondary_description }}
+                                            <sup><i class="fa fa-quote-right" aria-hidden="true"></i></sup>
+                                        </blockquote>
+                                    </div>
+                                    <div class="share_post mt_30 wow color_secondery animated slideInUp">
+                                        <h4 class="float-left mr_20">Share : </h4>
+                                        <div class="socal_media_2 d-inline-block white_hover">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment_area mt_60">
+                                    <h4 class="text-uppercase color_lightgray mb_30">Comments ({{ comments|length }})</h4>
+                                    <ul class="user_comments">
+                                        {% for comment in comments %}
+                                        <li class="mb_20 wow animated slideInUp">
+                                            <div class="comment_description bg_deepblack p_20">
+                                                <div class="author_img">
+                                                    <img src="{% static 'images/comments/05.png' %}" alt="images">
+                                                </div>
+                                                <div class="author_text color_secondery">
+                                                    <div class="author_info">
+                                                        <h5 class="author_name color_lightgray">{{ comment.name }}</h5>
+                                                        <span>{{ comment.created_at|date:"d F, Y \\at H:i A" }}</span>
+                                                    </div>
+                                                    <p>{{ comment.content }}</p>
+                                                    
+                                                    <a href="#" class="btn btn_info mt_15">Reply</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                
+                                <div class="replay mt_60 wow animated slideInUp", id="Reply">
+                                    <h4 class="text-uppercase color_lightgray mb_30">Leave A Reply</h4>
+                                    <form method="post" class="reply_form">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-6">
+                                                <input class="form-control bg_deepblack" name="name" type="text" placeholder="Your Name*">
+                                            </div>
+                                            <div class="col-md-6 col-lg-6">
+                                                <input class="form-control bg_deepblack" name="email" type="email" placeholder="Email Address*">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control bg_deepblack" name="content" rows="7" placeholder="Type Comments..."></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" name="submit" class="btn btn-default">Post Comment</button>
+                                            </div>
+                                        </div>
+                                    </form>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-lg-4">
+							<div class="blog_sidebar">
+								<div class="widget mb_60 d-inline-block p_30 bg_deepblack full_row wow animated slideInUp">
+									<h3 class="widget_title mb_30 color_white text-capitalize">Follow Me</h3>
+									<div class="socal_media">
+										<ul>
+											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="widget mb_60 d-inline-block p_30 white_link color_white bg_deepblack full_row wow animated slideInUp">
+									<h3 class="widget_title mb_30 color_white text-capitalize">Category</h3>
+									<div class="category_sidebar">
+										<ul>
+											<li><a href="#">Web Development</a><span>(14)</span></li>
+											<li><a href="#">Web Design</a><span>(07)</span></li>
+											<li><a href="#">Graphic Design</a><span>(10)</span></li>
+											<li><a href="#">UI/UX Design</a><span>(12)</span></li>
+											<li><a href="#">Consultation</a><span>(18)</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="widget mb_60 d-inline-block p_30 bg_deepblack white_link full_row wow animated slideInUp">
+                                    <h3 class="widget_title mb_30 color_white text-capitalize">Recent Post</h3>
+                                    <div class="recent_post">
+                                        <ul>
+                                            {% for recent_blog in recent_blogs %}
+                                            <li class="mb_30">
+                                                <a href="{% url 'blog_detail' recent_blog.id %}">
+                                                    <div class="post_img"><img src="{{ recent_blog.image.url }}" alt="{{ recent_blog.title }}"></div>
+                                                    <div class="recent_post_content">
+                                                        <h6>{{ recent_blog.title }}</h6>
+                                                        <span class="color_gray">{{ recent_blog.publication_date|date:"d M Y" }}</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+								<div class="widget mb_60 d-inline-block p_30 bg_deepblack white_link full_row wow animated slideInUp">
+									<h3 class="widget_title mb_30 color_white text-capitalize">Archives</h3>
+									<div class="archives">
+										<ul>
+											<li><a href="#">December 2018</a></li>
+											<li><a href="#">November 2018</a></li>
+											<li><a href="#">October 2018</a></li>
+											<li><a href="#">September 2018</a></li>
+											<li><a href="#">August 2018</a></li>
+											<li><a href="#">July 2018</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="widget mb_60 d-inline-block p_30 bg_deepblack full_row wow animated slideInUp">
+									<h3 class="widget_title mb_30 color_white text-capitalize">Archives</h3>
+									<div class="tags">
+										<ul>
+											<li><a href="#">Design</a></li>
+											<li><a href="#">Photographer</a></li>
+											<li><a href="#">Developer</a></li>
+											<li><a href="#">Fashion</a></li>
+											<li><a href="#">Coder</a></li>
+											<li><a href="#">Articles</a></li>
+											<li><a href="#">Mordan</a></li>
+											<li><a href="#">Web</a></li>	
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+           
+
+            
+            
+{% endblock %}

@@ -9,7 +9,7 @@
 
   
 # Comment and Interact:
-    Engage with the architect and fellow visitors by leaving comments and feedback on each project. Share your thoughts, ask questions, or offer compliments to foster a sense of community and collaboration.
+  Engage with the architect and fellow visitors by leaving comments and feedback on each project. Share your thoughts, ask questions, or offer compliments to foster a sense of community and collaboration.
 
 # Latest News:
  Stay up-to-date with the architect's latest developments, announcements, and industry insights. The news section offers a dynamic feed of articles, allowing visitors to explore recent happenings and architectural trends.

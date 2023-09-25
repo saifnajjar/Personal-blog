@@ -1,14 +1,14 @@
 
  Welcome to the online home of a talented architect! This website serves as a comprehensive platform for showcasing their professional journey, accomplishments, and creative works.
 
-﻿#  About Me:
+# About Me:
  Explore the architect's personal and professional background through their detailed CV. Learn about their education, experience, and passion for architecture, providing visitors with insights into the person behind the designs.
  
-﻿#   Portfolio:
+# Portfolio::
   Dive into a captivating gallery of architectural projects. Each project is beautifully presented, with a brief description and high-quality images. By clicking on any project, you can delve deeper into its unique features and architectural concepts.
 
   
-﻿#  Comment and Interact:
+# Comment and Interact:
     Engage with the architect and fellow visitors by leaving comments and feedback on each project. Share your thoughts, ask questions, or offer compliments to foster a sense of community and collaboration.
 
 # Latest News:
